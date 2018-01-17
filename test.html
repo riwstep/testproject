@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>VR Home On Web</title>
+  <!--   <style>
+     #gg {
+        text-shadow: 2px 2px 8px #FF0000;
+      }
+    </style>
+ -->
+
+    <meta property="og:title" content="Cecropia's The Hall VR in A-Frame" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://cecropia.github.io/thehallaframe/" />
+    <meta property="og:image" content="https://cecropia.github.io/thehallaframe/screenshots/thehall1.jpg" />
+    <meta property="og:description" content="WebVR demo that displays art " />
+
+    <meta name="twitter:card" content="summary_large_image">
+
+    <meta name="twitter:title" content="Cecropia's The Hall VR in A-Frame">
+    <meta name="twitter:description" content="WebVR demo that displays art ">
+    <meta name="twitter:image" content="https://cecropia.github.io/thehallaframe/screenshots/thehall1.jpg">
+
+
+
+
+    <link rel="icon" href="photo.jpg">
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+    <meta name="description" content="Cecropia's The Hall VR in A-Frame">
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+    <script src="js/aframe-extras.min.js"></script>
+
+    <script src="js/lzma.js"></script>
+    <script src="js/ctm.js"></script>
+    <script src="js/CTMLoader.js"></script>
+
+    <script src="js/aframe-teleport-controls.min.js"></script>
+    <script src="js/spheres_anim.js"></script>
+    <script src="js/anim_1.js"></script>
+    <script src="js/anim_2.js"></script>
+    <script src="js/mocap.js"></script>
+    <script src="js/envMapMaterial.js"></script>
+    <script src="js/ctm_component.js"></script>
+    <script src="js/mobile_component.js"></script>
+    <script src="https://unpkg.com/aframe-extras.ocean@%5E3.5.x/dist/aframe-extras.ocean.min.js"></script>
+  </head>
+
+  <body>
+
+    <div id="container" class="container">
+      <div class="info">
+        <div class="company"><a style="color:#000000" target="_blank">VR Home On Web</a></div>
+        <div style="color:#000000" >บ้านคนชรา</div>
+        
+        <a class="button" id="start_experience" href="#" >ดูแบบบ้าน</a>
+        <div class="instructions " style="color:#000000">
+          <div id="gg"><strong>VR</strong>: Hand controllers and teleport with trigger.</div>
+          <div><strong>Desktop</strong>: Keyboard (WASD/arrows) and mouse.</div>
+          <div><strong>Mobile</strong>: Gaze cursor and teleportation.</div>
+        </div>
+      </div>
+    </div>     
+    <a href="new.html">click</a> <button><a href="new.html" >ดูแบบบ้าน</a></button>
+    <a-scene stats vr-mode-ui="enabled: true" >
+    <a-plane position="0 0 -4" rotation="-90 0 0" scale="50 50 4" color="#7BC8A4" shadow></a-plane>
+    <a-light color="#fffff" position="1 22.427 1"   type="point" light="intensity: 0.6; castShadow: true"></a-light>
+    <!-- <a-light color="#fffff" position="-0.376 2.233 -7.541" scale="0.050 0.060 0.070" type="point" light="intensity: 0.6; distance: 4;"></a-light> -->
+    <a-light color="#fffff" position="-1.591 2.317 -8.450" scale="0.050 0.060 0.070" type="point" light="intensity: 0.6; distance: 5;"></a-light>
+    <a-light color="#fffff" position="-0.530 2.227 -11.784" scale="0.050 0.060 0.070" type="point" light="intensity: 0.6; distance: 5;"></a-light>
+    <a-light color="#fffff" position="-2.888 2.227 -13.217" scale="0.050 0.060 0.070" type="point" light="intensity: 0.6; distance: 4;"></a-light>
+    <a-light color="#fffff" position="-4.939 2.227 -12.461" scale="0.050 0.060 0.070" type="point" light="intensity: 0.6; distance: 4;"></a-light>
+
+      <a-assets>
+        <!-- <a-mixin id="checkpoint"></a-mixin>
+        <a-mixin id="checkpoint-hovered" color="#6CEEB5"></a-mixin> -->
+
+
+        <img id="sky_sphere-texture" src="textures/sky_sphere.jpg">
+    
+        <!-- <a-sound src="audio/_ED_Dont_say_lazy_TS_wmv.ogg"
+                 autoplay="true"
+                 loop="true"
+                 position="1 1 0"></a-sound>
+     -->
+     <a-asset-item id="homepro-ctm" src="models/homepro.ctm"></a-asset-item>
+    <!-- frool -->
+    <a-asset-item id="view-ctm" src="models/view.ctm"></a-asset-item>
+    <a-asset-item id="viewroom-ctm" src="models/viewroom.ctm"></a-asset-item>
+    <a-asset-item id="floorkitchen-ctm" src="models/floorkitchen.ctm"></a-asset-item>
+    <a-asset-item id="floorkitchen2-ctm" src="models/floorkitchen2.ctm"></a-asset-item>
+    <a-asset-item id="floorkitchen3-ctm" src="models/floorkitchen3.ctm"></a-asset-item>
+    <a-asset-item id="bedroom-ctm" src="models/bedroom.ctm"></a-asset-item>
+    <a-asset-item id="floortoilet-ctm" src="models/floortoilet.ctm"></a-asset-item>
+    <!-- frool -->
+    
+    <a-asset-item id="ceiling-ctm" src="models/ceiling.ctm"></a-asset-item>
+
+
+    <!-- stair -->
+      <a-asset-item id="stair-ctm" src="models/stair2.ctm"></a-asset-item>
+      <a-asset-item id="stair2-ctm" src="models/stair2.ctm"></a-asset-item>
+      <a-asset-item id="stair3-ctm" src="models/stair3.ctm"></a-asset-item>
+      <a-asset-item id="stair4-ctm" src="models/stair4.ctm"></a-asset-item>
+      <!-- stair -->
+
+    <!-- bedroom -->
+    <!-- detail -->
+  <a-asset-item id="inbedroom8-ctm" src="models/homein/inbedroom/inbedroom8.ctm"></a-asset-item>
+  <a-asset-item id="inbedroom9-ctm" src="models/homein/inbedroom/inbedroom9.ctm"></a-asset-item>
+  <a-asset-item id="inbedroom10-ctm" src="models/homein/inbedroom/inbedroom10.ctm"></a-asset-item>
+  <a-asset-item id="inbedroom11-ctm" src="models/homein/inbedroom/inbedroom11.ctm"></a-asset-item>
+  <!-- detail -->
+  <a-asset-item id="inbedroom2-ctm" src="models/homein/inbedroom/inbedroom2.ctm"></a-asset-item>
+  <a-asset-item id="inbedroom3-ctm" src="models/homein/inbedroom/inbedroom3.ctm"></a-asset-item>
+  <a-asset-item id="inbedroom4-ctm" src="models/homein/inbedroom/inbedroom4.ctm"></a-asset-item>
+  <a-asset-item id="inbedroom5-ctm" src="models/homein/inbedroom/inbedroom5.ctm"></a-asset-item>
+  <a-asset-item id="inbedroom6-ctm" src="models/homein/inbedroom/inbedroom6.ctm"></a-asset-item>
+  <a-asset-item id="inbedroom7-ctm" src="models/homein/inbedroom/inbedroom7.ctm"></a-asset-item>
+    <!-- bedroom -->
+     
+    <!-- viewroom -->
+    <!-- detail -->
+     <a-asset-item id="detailinviewroom-ctm" src="models/homein/inviewroom/detail/detailinviewroom.ctm"></a-asset-item>
+     <a-asset-item id="detailinviewroom2-ctm" src="models/homein/inviewroom/detail/detailinviewroom2.ctm"></a-asset-item>
+     <a-asset-item id="detailinviewroom3-ctm" src="models/homein/inviewroom/detail/detailinviewroom3.ctm"></a-asset-item>
+     <a-asset-item id="detailinviewroom4-ctm" src="models/homein/inviewroom/detail/detailinviewroom4.ctm"></a-asset-item>
+     <a-asset-item id="detailinviewroom5-ctm" src="models/homein/inviewroom/detail/detailinviewroom5.ctm"></a-asset-item>
+     <a-asset-item id="detailinviewroom6-ctm" src="models/homein/inviewroom/detail/detailinviewroom6.ctm"></a-asset-item>
+     <a-asset-item id="detailinviewroom7-ctm" src="models/homein/inviewroom/detail/detailinviewroom7.ctm"></a-asset-item>
+     <a-asset-item id="detailinviewroom8-ctm" src="models/homein/inviewroom/detail/detailinviewroom8.ctm"></a-asset-item>
+     <!-- detail -->
+     <a-asset-item id="inviewroom3-ctm" src="models/homein/inviewroom/inviewroom3.ctm"></a-asset-item>
+     <a-asset-item id="inviewroom4-ctm" src="models/homein/inviewroom/inviewroom4.ctm"></a-asset-item>
+     <a-asset-item id="inviewroom5-ctm" src="models/homein/inviewroom/inviewroom5.ctm"></a-asset-item>
+     <a-asset-item id="inviewroom6-ctm" src="models/homein/inviewroom/inviewroom6.ctm"></a-asset-item>
+     <!-- detail -->
+     <a-asset-item id="detailinviewroom9-ctm" src="models/homein/inviewroom/detail/detailinviewroom9.ctm"></a-asset-item>
+     <a-asset-item id="detailinviewroom10-ctm" src="models/homein/inviewroom/detail/detailinviewroom10.ctm"></a-asset-item>
+     <a-asset-item id="detailinviewroom11-ctm" src="models/homein/inviewroom/detail/detailinviewroom11.ctm"></a-asset-item>
+     <!-- detail -->
+     <a-asset-item id="inviewroom8-ctm" src="models/homein/inviewroom/inviewroom8.ctm"></a-asset-item>
+     <a-asset-item id="inviewroom9-ctm" src="models/homein/inviewroom/inviewroom9.ctm"></a-asset-item>
+     <a-asset-item id="inviewroom10-ctm" src="models/homein/inviewroom/inviewroom10.ctm"></a-asset-item>
+     <a-asset-item id="inviewroom11-ctm" src="models/homein/inviewroom/inviewroom11.ctm"></a-asset-item>
+     <a-asset-item id="inviewroom12-ctm" src="models/homein/inviewroom/inviewroom12.ctm"></a-asset-item>
+     <a-asset-item id="inviewroom13-ctm" src="models/homein/inviewroom/inviewroom13.ctm"></a-asset-item>
+     <a-asset-item id="inviewroom14-ctm" src="models/homein/inviewroom/inviewroom14.ctm"></a-asset-item>
+    <!-- viewroom -->
+
+   <!-- toilet -->
+    <a-asset-item id="tolet-ctm" src="models/toletin/toilet.ctm"></a-asset-item>
+    <a-asset-item id="tolet2-ctm" src="models/toletin/toilet2.ctm"></a-asset-item>
+    <a-asset-item id="tolet3-ctm" src="models/toletin/toilet3.ctm"></a-asset-item>
+    <a-asset-item id="tolet6-ctm" src="models/toletin/toilet6.ctm"></a-asset-item>
+    <a-asset-item id="tolet5-ctm" src="models/toletin/toilet5.ctm"></a-asset-item>
+  <!-- toilet -->
+
+  <!-- kitchen -->
+  <a-asset-item id="inkitchenroom-ctm" src="models/homein/inkitchenroom/inkitchenroom.ctm"></a-asset-item>
+  <!-- detail -->
+  <a-asset-item id="detailinkitchenroom-ctm" src="models/homein/inkitchenroom/detail/detailinkitchenroom.ctm"></a-asset-item>
+  <a-asset-item id="detailinkitchenroom2-ctm" src="models/homein/inkitchenroom/detail/detailinkitchenroom2.ctm"></a-asset-item> 
+  <a-asset-item id="detailinkitchenroom3-ctm" src="models/homein/inkitchenroom/detail/detailinkitchenroom3.ctm"></a-asset-item> 
+  <a-asset-item id="detailinkitchenroom4-ctm" src="models/homein/inkitchenroom/detail/detailinkitchenroom4.ctm"></a-asset-item>  
+  <!-- detail -->
+   <a-asset-item id="inkitchenroom3-ctm" src="models/homein/inkitchenroom/inkitchenroom3.ctm"></a-asset-item>
+    <a-asset-item id="inkitchenroom4-ctm" src="models/homein/inkitchenroom/inkitchenroom4.ctm"></a-asset-item>
+     <a-asset-item id="inkitchenroom5-ctm" src="models/homein/inkitchenroom/inkitchenroom5.ctm"></a-asset-item>
+      <a-asset-item id="inkitchenroom6-ctm" src="models/homein/inkitchenroom/inkitchenroom6.ctm"></a-asset-item>
+       <a-asset-item id="inkitchenroom7-ctm" src="models/homein/inkitchenroom/inkitchenroom7.ctm"></a-asset-item>
+        <a-asset-item id="inkitchenroom8-ctm" src="models/homein/inkitchenroom/inkitchenroom8.ctm"></a-asset-item>
+         <a-asset-item id="inkitchenroom9-ctm" src="models/homein/inkitchenroom/inkitchenroom9.ctm"></a-asset-item>
+  <!-- kitchen -->
+
+     <!-- outhome -->
+    <a-asset-item id="out-ctm" src="models/outhome/out.ctm"></a-asset-item>
+    <a-asset-item id="out2-ctm" src="models/outhome/out2.ctm"></a-asset-item>
+    <a-asset-item id="out3-ctm" src="models/outhome/out3.ctm"></a-asset-item>
+    <a-asset-item id="out4-ctm" src="models/outhome/out4.ctm"></a-asset-item>
+    <a-asset-item id="out5-ctm" src="models/outhome/out5.ctm"></a-asset-item>
+    <a-asset-item id="out6-ctm" src="models/outhome/out6.ctm"></a-asset-item>
+    <a-asset-item id="out7-ctm" src="models/outhome/out7.ctm"></a-asset-item>
+    <a-asset-item id="out8-ctm" src="models/outhome/out8.ctm"></a-asset-item>
+    <a-asset-item id="out9-ctm" src="models/outhome/out9.ctm"></a-asset-item>
+    <a-asset-item id="out10-ctm" src="models/outhome/out10.ctm"></a-asset-item>
+    <a-asset-item id="out11-ctm" src="models/outhome/out11.ctm"></a-asset-item>
+    <a-asset-item id="out12-ctm" src="models/outhome/out12.ctm"></a-asset-item>
+    <a-asset-item id="out13-ctm" src="models/outhome/out13.ctm"></a-asset-item>
+    <a-asset-item id="out14-ctm" src="models/outhome/out14.ctm"></a-asset-item>
+    <a-asset-item id="out15-ctm" src="models/outhome/out15.ctm"></a-asset-item>
+    <a-asset-item id="out16-ctm" src="models/outhome/out16.ctm"></a-asset-item>
+    <a-asset-item id="out17-ctm" src="models/outhome/out17.ctm"></a-asset-item>
+    <a-asset-item id="out18-ctm" src="models/outhome/out18.ctm"></a-asset-item>
+    <a-asset-item id="out19-ctm" src="models/outhome/out19.ctm"></a-asset-item>
+    <a-asset-item id="out20-ctm" src="models/outhome/out20.ctm"></a-asset-item>
+    <a-asset-item id="out21-ctm" src="models/outhome/out21.ctm"></a-asset-item>
+    <a-asset-item id="out22-ctm" src="models/outhome/out22.ctm"></a-asset-item>
+    <a-asset-item id="out23-ctm" src="models/outhome/out23.ctm"></a-asset-item>
+    <a-asset-item id="out24-ctm" src="models/outhome/out24.ctm"></a-asset-item>
+    <a-asset-item id="out25-ctm" src="models/outhome/out25.ctm"></a-asset-item>
+    <a-asset-item id="out26-ctm" src="models/outhome/out26.ctm"></a-asset-item>
+    <a-asset-item id="out27-ctm" src="models/outhome/out27.ctm"></a-asset-item>
+    <a-asset-item id="out28-ctm" src="models/outhome/out28.ctm"></a-asset-item>
+    <a-asset-item id="out29-ctm" src="models/outhome/out29.ctm"></a-asset-item>
+     <!-- outhome -->
+
+      <!-- asset -->
+      <a-asset-item id="bed-obj" src="models/asset/bed.obj"></a-asset-item>
+      <img id="1-texture" src="models/asset/1.jpg">
+      <img id="ao61005-texture" src="models/asset/ao61005.jpg">
+      <img id="bed clot-texture" src="models/asset/bed clot.jpg">
+      <img id="bed cloth_B-texture" src="models/asset/bed cloth_B.jpg">
+      <img id="bed cloth_R-texture" src="models/asset/bed cloth_R.jpg">
+      <img id="bigcity-texture" src="models/asset/bigcity.jpg">
+
+      <!-- <a-asset-item id="door-obj" src="models/asset/testmodel/door.obj"></a-asset-item>
+      <img id="Door-texture" src="models/asset/testmodel/door/_Wood_Bamboo_Medium_1.jpg"> -->
+      
+      <!-- <img id="door-texture" src="textures/other.jpg"> -->
+      <!-- <a-asset-item id="window-obj" src="models/asset/testmodel/window.obj"></a-asset-item>
+      <img id="window-texture" src="models/asset/testmodel/window/Metal_Aluminum_Anodized.jpg"> -->
+      <a-asset-item id="tv_meubel-obj" src="models/asset/testmodel/tv_meubel.obj"></a-asset-item>
+      <img id="tv_meubel-texture" src="models/asset/testmodel/tv_meubel/Wood_Bamboo_Medium.jpg">
+      <a-asset-item id="kitchentable-obj" src="models/asset/testmodel/kitchentable.obj"></a-asset-item>
+      <img id="kitchentable-texture" src="models/asset/testmodel/kitchentable/pyokki.jpg">
+      <a-asset-item id="sofa-obj" src="models/asset/testmodel/sofa.obj"></a-asset-item>
+      <img id="sofa-texture" src="textures/other.jpg">
+      <a-asset-item id="table-obj" src="models/asset/testmodel/table.obj"></a-asset-item>
+      <img id="table-texture" src="models/asset/testmodel/tv_meubel/Wood_Bamboo_Medium.jpg">
+      <a-asset-item id="balcony-obj" src="models/asset/testmodel/balcony.obj"></a-asset-item>
+      <a-asset-item id="balcony2-obj" src="models/asset/testmodel/balcony.obj"></a-asset-item>
+      <a-asset-item id="balcony3-obj" src="models/asset/testmodel/balcony.obj"></a-asset-item>
+      <a-asset-item id="balcony4-obj" src="models/asset/testmodel/balcony.obj"></a-asset-item>
+      <img id="balcony-texture" src="models/asset/testmodel/tv_meubel/Wood_Bamboo_Medium.jpg">
+       <a-asset-item id="Shelves-obj" src="models/asset/testmodel/Shelves.obj"></a-asset-item>
+      <img id="Shelves-texture" src="models/asset/testmodel/Shelves/Red_Oak_Facegrain.jpg">
+      <a-asset-item id="gas-obj" src="models/asset/testmodel/gas.obj"></a-asset-item>
+      <img id="gas-texture" src="models/asset/testmodel/gas/gas.jpg">
+      <a-asset-item id="kitchen2-obj" src="models/asset/testmodel/kitchen2.obj"></a-asset-item>
+      <img id="kitchen2-texture" src="models/asset/testmodel/tv_meubel/Wood_Bamboo_Medium.jpg">
+      <a-asset-item id="doorbedroom-obj" src="models/asset/testmodel/doorbedroom.obj"></a-asset-item>
+      <img id="doorbedroom-texture" src="models/asset/testmodel/doorbedroom/_Metal_Aluminum_Anodized_4.jpg">
+      <a-asset-item id="dish2-obj" src="models/asset/testmodel/dish2.obj"></a-asset-item>
+      <img id="dish2-texture" src="models/asset/testmodel/dish2/_81.jpg">
+      <a-asset-item id="windowbedroom-obj" src="models/asset/testmodel/windowbedroom.obj"></a-asset-item>
+      <a-asset-item id="windowview-obj" src="models/asset/testmodel/windowbedroom.obj"></a-asset-item>
+      <img id="windowbedroom-texture" src="models/asset/testmodel/Shelves/Red_Oak___Face___Horiz1.jpg">
+      <a-asset-item id="windoorkitchen-obj" src="models/asset/testmodel/windoorkitchen.obj"></a-asset-item>
+      <img id="windoorkitchen-texture" src="models/asset/testmodel/windoorkitchen/Wood_Cherry_Original.jpg">
+      <a-asset-item id="windoorkitchen2-obj" src="models/asset/testmodel/windoorkitchen2.obj"></a-asset-item>
+      <img id="windoorkitchen2-texture" src="models/asset/testmodel/windoorkitchen/Wood_Cherry_Original.jpg">
+      <a-asset-item id="windoorkitchen3-obj" src="models/asset/testmodel/windoorkitchen3.obj"></a-asset-item>
+      <img id="windoorkitchen3-texture" src="models/asset/testmodel/windoorkitchen3/Translucent_Glass_Sky_Reflection.jpg">
+      <a-asset-item id="tree-obj" src="models/asset/testmodel/tree.obj"></a-asset-item>
+      <a-asset-item id="tree2-obj" src="models/asset/testmodel/tree.obj"></a-asset-item>
+      <a-asset-item id="tree3-obj" src="models/asset/testmodel/tree.obj"></a-asset-item>
+      <img id="tree-texture" src="models/asset/testmodel/tree/seabean_clean_middle.jpg">
+     <!-- <a-asset-item id="doortoilet-obj" src="models/asset/testmodel/doortoilet.obj"></a-asset-item>
+      <img id="doortoilet-texture" src="models/asset/testmodel/tv_meubel/o.jpg"> -->
+     <!--  <a-asset-item id="toilet-obj" src="models/asset/testmodel/toilet.obj"></a-asset-item>
+      <img id="toilet-texture" src="textures/other.jpg"> -->
+     <!--  <a-asset-item id="kitchenchair-obj" src="models/asset/testmodel/kitchenchair.obj"></a-asset-item>
+      <img id="kitchenchair-texture" src="models/asset/testmodel/kitchenchair/pyokki.jpg"> -->
+      <!-- <a-asset-item id="TV-obj" src="models/asset/testmodel/TV.obj"></a-asset-item>
+      <img id="TV-texture" src="textures/TV.jpg"> -->
+      <a-asset-item id="TV-ctm" src="models/asset/testmodel/TV.ctm"></a-asset-item>
+      <a-asset-item id="kitchenchair-ctm" src="models/asset/testmodel/kitchenchair.ctm"></a-asset-item>
+      <a-asset-item id="kitchenchair2-ctm" src="models/asset/testmodel/kitchenchair.ctm"></a-asset-item>
+      <a-asset-item id="toilet-ctm" src="models/asset/testmodel/toilet.ctm"></a-asset-item>
+      <a-asset-item id="sink-ctm" src="models/asset/testmodel/sink.ctm"></a-asset-item>
+      <a-asset-item id="sink2-ctm" src="models/asset/testmodel/sink2.ctm"></a-asset-item>
+      <a-asset-item id="glass-ctm" src="models/asset/testmodel/glass.ctm"></a-asset-item>
+      <a-asset-item id="Rail-ctm" src="models/asset/testmodel/Rail.ctm"></a-asset-item>
+      <a-asset-item id="Rail2-ctm" src="models/asset/testmodel/Rail2.ctm"></a-asset-item>
+      <a-asset-item id="Rail3-ctm" src="models/asset/testmodel/Rail3.ctm"></a-asset-item>
+      <!-- <a-asset-item id="Tychy-ctm" src="models/asset/testmodel/Tychy.ctm"></a-asset-item> -->
+      <a-asset-item id="shower-ctm" src="models/asset/testmodel/shower.ctm"></a-asset-item>
+      <a-asset-item id="kitchen-ctm" src="models/asset/testmodel/kitchen.ctm"></a-asset-item>
+      <a-asset-item id="refrigerator-ctm" src="models/asset/testmodel/refrigerator.ctm"></a-asset-item>
+      <a-asset-item id="doortoilet-ctm" src="models/asset/testmodel/doortoilet.ctm"></a-asset-item>
+      <a-asset-item id="dish-ctm" src="models/asset/testmodel/dish.ctm"></a-asset-item>
+      <a-asset-item id="lightSwitch-ctm" src="models/asset/testmodel/lightSwitch.ctm"></a-asset-item>
+      <a-asset-item id="lightSwitch1_2-ctm" src="models/asset/testmodel/lightSwitch.ctm"></a-asset-item>
+      <a-asset-item id="window2-ctm" src="models/asset/testmodel/window2.ctm"></a-asset-item>
+      <a-asset-item id="window3-ctm" src="models/asset/testmodel/window3.ctm"></a-asset-item>
+      <a-asset-item id="windowview2-ctm" src="models/asset/testmodel/window2.ctm"></a-asset-item>
+      <a-asset-item id="windowview3-ctm" src="models/asset/testmodel/window3.ctm"></a-asset-item>
+      <a-asset-item id="windowviewroom-ctm" src="models/asset/testmodel/windowview.ctm"></a-asset-item>
+      <a-asset-item id="doorviewfontend2-ctm" src="models/asset/testmodel/doorviewfontend2.ctm"></a-asset-item>
+      <a-asset-item id="doormain-ctm" src="models/asset/testmodel/doormain.ctm"></a-asset-item>
+      <a-asset-item id="fountain-ctm" src="models/asset/testmodel/fountain.ctm"></a-asset-item>
+      <!-- <a-asset-item id="tree2-ctm" src="models/asset/testmodel/tree2.ctm"></a-asset-item> -->
+    
+       <!-- <a-asset-item id="lightSwitch2-ctm" src="models/asset/testmodel/lightSwitch2.ctm"></a-asset-item> -->
+      <!-- asset -->
+    
+        
+
+    
+    
+    
+        <!-- mocaps -->
+        <a-asset-item id="am_threejs_CEC_BODY_1_HEAD-mocap" src="js/mocap/am_threejs_CEC_BODY_1_HEAD.js"></a-asset-item>
+        <a-asset-item id="am_threejs_CEC_BODY_1_LEFT-mocap" src="js/mocap/am_threejs_CEC_BODY_1_LEFT.js"></a-asset-item>
+        <a-asset-item id="am_threejs_CEC_BODY_1_RIGHT-mocap" src="js/mocap/am_threejs_CEC_BODY_1_RIGHT.js"></a-asset-item>
+
+        <a-asset-item id="am_threejs_CEC_BODY_2_HEAD-mocap" src="js/mocap/am_threejs_CEC_BODY_2_HEAD.js"></a-asset-item>
+        <a-asset-item id="am_threejs_CEC_BODY_2_LEFT-mocap" src="js/mocap/am_threejs_CEC_BODY_2_LEFT.js"></a-asset-item>
+        <a-asset-item id="am_threejs_CEC_BODY_2_RIGHT-mocap" src="js/mocap/am_threejs_CEC_BODY_2_RIGHT.js"></a-asset-item>
+
+        <a-asset-item id="am_threejs_CEC_BODY_3_HEAD-mocap" src="js/mocap/am_threejs_CEC_BODY_3_HEAD.js"></a-asset-item>
+        <a-asset-item id="am_threejs_CEC_BODY_3_LEFT-mocap" src="js/mocap/am_threejs_CEC_BODY_3_LEFT.js"></a-asset-item>
+        <a-asset-item id="am_threejs_CEC_BODY_3_RIGHT-mocap" src="js/mocap/am_threejs_CEC_BODY_3_RIGHT.js"></a-asset-item>
+
+        <a-asset-item id="am_threejs_CEC_BODY_4_HEAD-mocap" src="js/mocap/am_threejs_CEC_BODY_4_HEAD.js"></a-asset-item>
+        <a-asset-item id="am_threejs_CEC_BODY_4_LEFT-mocap" src="js/mocap/am_threejs_CEC_BODY_4_LEFT.js"></a-asset-item>
+        <a-asset-item id="am_threejs_CEC_BODY_4_RIGHT-mocap" src="js/mocap/am_threejs_CEC_BODY_4_RIGHT.js"></a-asset-item>
+        <!-- - mocaps -->
+ 
+      </a-assets>
+
+      <a-sky color="#EEEEFF" material="src: #sky_sphere-texture"></a-sky>
+    <!-- asset -->
+     <a-entity obj-model="obj: #bed-obj;" material="src: #bigcity-texture; metalness: 0.6" scale="0.002 0.002 0.002" position="-0.394 0.139 -13.340" ></a-entity>
+
+     <!-- <a-entity obj-model="obj: #door-obj;" material="src: #Door-texture; metalness: 0.6" ></a-entity> -->
+     
+
+    <!--  <a-entity obj-model="obj: #window-obj;" material="src: #window-texture; metalness: 0.6" scale="0.015 0.018 0.019" position="-0.450 1.074 -13.398" rotation="0.000 90.126 0.000"></a-entity> -->
+
+      <a-entity obj-model="obj: #tv_meubel-obj;" material="src: #tv_meubel-texture; metalness: 0.6" scale="0.200 0.250 0.200" position="-0.440 0.193 -9.080" rotation="0.000 -89.782 0.000"></a-entity>
+
+       <a-entity obj-model="obj: #kitchentable-obj;" material="src: #kitchentable-texture; metalness: 0.6" scale="0.200 0.200 0.210" position="-3.329 0.000 -7.602" ></a-entity>
+
+        <a-entity obj-model="obj: #sofa-obj;" material="src: #sofa-texture; metalness: 0.6" scale="0.110 0.240 0.190" position="-0.177 -0.327 -6.388" rotation="0.000 90.194 0.000" ></a-entity>
+        
+        <a-entity obj-model="obj: #table-obj;" material="src: #table-texture; metalness: 0.6" scale="0.230 0.240 0.290" position="-0.234 0.121 -7.871" ></a-entity>
+        <a-entity obj-model="obj: #balcony-obj;" material="src: #balcony-texture; metalness: 0.6" scale="0.030 0.030 0.005" position="-1.324 -0.050 -1.486" rotation="0.000 90 0.000"></a-entity>
+         <a-entity obj-model="obj: #balcony2-obj;" material="src: #balcony-texture; metalness: 0.6" scale="0.030 0.030 0.006" position="-2.375 -0.050 -11.148" rotation="-0.115 180 1.318"></a-entity>
+          <a-entity obj-model="obj: #balcony3-obj;" material="src: #balcony-texture; metalness: 0.6" scale="0.030 0.030 0.004" position="-4.487 0.052 -6.500" rotation="0.000 90 0.000"></a-entity>
+          <a-entity obj-model="obj: #balcony4-obj;" material="src: #balcony-texture; metalness: 0.6" scale="0.030 0.030 0.003" position="-0.851 -0.050 -6.809" rotation="0.000 180 0.000"></a-entity>
+          <a-entity obj-model="obj: #Shelves-obj;" material="src: #Shelves-texture; metalness: 0.6" scale="0.290 0.240 0.320" position="0.757 0.000 -10.226" rotation="0.000 -89.840 0.000"></a-entity>
+          <a-entity obj-model="obj: #gas-obj;" material="src: #gas-texture; metalness: 0.6" 
+          scale="0.022 0.015 0.013" position="-4.779 0.484 -14.020"></a-entity>
+          <a-entity obj-model="obj: #kitchen2-obj;" material="src: #kitchen2-texture; metalness: 0.6" scale="0.250 0.060 0.170" position="-3.361 0.825 -14.000"
+          ></a-entity>
+           <a-entity obj-model="obj: #doorbedroom-obj;" material="src: #doorbedroom-texture; metalness: 0.6" scale="1 0.690 1" position="-1.487 0 -9.703"
+          ></a-entity>
+           <a-entity obj-model="obj: #dish2-obj;" material="src: #dish2-texture; metalness: 0.6" scale="0.025 0.030 0.020" position="-2.578 1.266 -14.393" rotation="180 0 0"></a-entity>
+           <a-entity obj-model="obj: #windowbedroom-obj;" material="src: #windowbedroom-texture; metalness: 0.6" scale="0.220 0.360 0.500" position="1.224 0.700 -11.591"></a-entity>
+           <a-entity obj-model="obj: #windowview-obj;" material="src: #windowbedroom-texture; metalness: 0.6" scale="0.220 0.360 0.360" position="1.224 0.700 -6.921"></a-entity>
+           <a-entity obj-model="obj: #windoorkitchen-obj;" material="src: #windoorkitchen-texture; metalness: 0.6" scale="0.629 0.390 0.440" position="-3.219 0.982 -14.342" rotation="180 0 0"></a-entity>
+            <a-entity obj-model="obj: #windoorkitchen2-obj;" material="src: #windoorkitchen-texture; metalness: 0.6" rotation="0 180 0" scale="0.030 0.016 0.030" position="-1.680 0.999 -16.828"></a-entity>
+            <a-entity obj-model="obj: #windoorkitchen3-obj;" material="src: #windoorkitchen3-texture; metalness: 0.6" rotation="0 180 0" scale="0.030 0.016 0.030" position="-1.680 0.999 -16.828"></a-entity>
+             <a-entity obj-model="obj: #tree-obj;" material="src: #tree-texture; metalness: 0.6" scale="0.010 0.025 0.035" position="6.246 0.373 -22.313" rotation="0 180 0"></a-entity>
+             <a-entity obj-model="obj: #tree2-obj;" material="src: #tree-texture; metalness: 0.6" scale="0.010 0.025 0.030" position="-13.057 0.373 -18.734" rotation="0 270 0"></a-entity>
+             <a-entity obj-model="obj: #tree3-obj;" material="src: #tree-texture; metalness: 0.6" scale="0.010 0.025 0.035" position="-10.197 0.373 3.763" ></a-entity>
+         <!--  <a-entity obj-model="obj: #toilet-obj;" material="src: #toilet-texture; metalness: 0.6"></a-entity> -->
+        <!-- <a-entity obj-model="obj: #kitchenchair-obj;" material="src: #kitchenchair-texture; metalness: 0.6"></a-entity> -->
+
+    <!--   <a-entity obj-model="obj: #TV-obj;" material="src: #TV-texture; metalness: 0.6" scale="0.200 0.250 0.200" position="-0.440 0.193 -9.080" rotation="0.000 -89.782 0.000"></a-entity> -->
+
+      <a-entity ctm="src: #TV-ctm;  name:TV;"  scale="0.310 0.390 0.200" position="-0.490 0.795 -9.022" rotation="0.000 -0.344 0.000"></a-entity>.
+      <a-entity ctm="src: #kitchenchair-ctm;  name:pyokki;" scale="0.310 0.270 0.230" position="-3.178 0.000 -7.846" rotation="0.000 -91.100 0.000" shadow="cast"></a-entity>
+      <a-entity ctm="src: #kitchenchair2-ctm;  name:pyokki;" scale="0.310 0.270 0.230" position="-3.724 0.000 -7.987" rotation="0.000 89.782 0.000" shadow="cast"></a-entity>
+       <a-entity ctm="src: #toilet-ctm;  name:other;" scale="0.410 0.400 0.330" position="-5.547 0.000 -12.444" rotation="0.000 91.272 0.000"></a-entity>
+        <a-entity ctm="src: #sink-ctm;  name:other;" scale="0.020 0.010 0.020" position="-5.712 0.996 -11.049" rotation="0.000 1.432 0.000"></a-entity>
+         <a-entity ctm="src: #sink2-ctm;  name:gas;" scale="0.020 0.010 0.020" position="-5.712 0.996 -11.049" rotation="0.000 1.432 0.000"></a-entity>
+          <a-entity ctm="src: #Rail-ctm;  name:other;" scale="0.020 0.010 0.020" position="-2.910 0.626 -11.167" rotation="0.000 90.000 0.000"></a-entity>
+          <a-entity ctm="src: #Rail2-ctm;  name:other;" scale="0.020 0.030 0.020" position="-2.950 0.176 -11.957" rotation="0.000 90.000 0.000"></a-entity>
+          <a-entity ctm="src: #Rail3-ctm;  name:other;" scale="0.020 0.025 0.035" position="-0.791 0.626 -11.587" rotation="0.000 90.000 0.000"></a-entity>
+          <a-entity ctm="src: #shower-ctm;  name:shower;" scale="0.020 0.020 0.020" rotation="0.000 180.000 0.000" position="-4.201 1.216 -11.792"></a-entity>
+          <a-entity ctm="src: #glass-ctm;  name:other;" rotation="0.000 180.0 0.000" scale="0.240 0.240 0.250" position="-3.922 0.003 -13.045"></a-entity>
+          <a-entity ctm="src: #kitchen-ctm;  name:other;" scale="0.023 0.028 0.016" position="-4.897 0.049 -13.971" ></a-entity>
+          <a-entity ctm="src: #refrigerator-ctm;  name:gas;" scale="0.200 0.240 0.240" position="-1.904 0 -12.100" rotation="0 270 0"></a-entity>
+           <a-entity ctm="src: #doortoilet-ctm;  name:gas;" rotation="0.000 -90 0.000" scale="0.910 0.820 1" position="-3.801 0 -12.988"></a-entity>
+           <a-entity ctm="src: #dish-ctm;  name:other;" scale="0.025 0.030 0.020" position="-2.574 0.827 -13.980"></a-entity>
+           <a-entity ctm="src: #lightSwitch-ctm;  name:other;" scale="0.030 0.030 0.030" rotation="0.000 90 0.000" position="-0.395 1.461 -5.764"></a-entity>
+           <a-entity ctm="src: #lightSwitch1_2-ctm;  name:other;" scale="0.030 0.030 0.030" rotation="0.000 180 0.000" position="-3.145 1.429 -13.200"></a-entity>
+            <a-entity ctm="src: #window2-ctm;  name:other;" scale="0.020 0.028 0.039" position="0.761 0.671 -14.141"></a-entity>
+            <a-entity ctm="src: #window3-ctm;  name:other;" scale="0.020 0.028 0.040" position="1.475 0.671 -10.186" rotation="0.000 180 0.000"></a-entity>
+            <a-entity ctm="src: #windowview2-ctm;  name:other;" scale="0.020 0.028 0.028" position="0.761 0.671 -8.737"></a-entity>
+            <a-entity ctm="src: #windowview3-ctm;  name:other;" scale="0.020 0.028 0.028" position="1.475 0.671 -5.888" rotation="0.000 180 0.000"></a-entity>
+            <a-entity ctm="src: #windowviewroom-ctm;  name:sink2;" scale="0.029 0.033 0.015" position="-1.736 0.822 -5.220" ></a-entity>
+            <a-entity ctm="src: #doorviewfontend2-ctm;  name:_Wood_Bamboo_Medium_1;" scale="0.027 0.023 0.015" position="-1.196 0.081 -7.053"  rotation="0.000 180 0.000"></a-entity>
+            <a-entity ctm="src: #doormain-ctm;  name:other;" scale="0.022 0.023 0.031" rotation="0.000 180 0.000" position="-3.852 0 -11.101"></a-entity>
+            <a-entity ctm="src: #fountain-ctm;  name:other;" scale="0.03 0.05 0.03" position="-1.325 0 -0.496"></a-entity>
+            <!-- <a-entity ctm="src: #tree2-ctm;  name:other;" scale="0.010 0.010 0.025" position="3.807 0.413 -1.428"></a-entity> -->
+           <!-- <a-entity ctm="src: #lightSwitch2-ctm;  name:other;"></a-entity> -->
+          <!-- <a-entity ctm="src: #Tychy-ctm;  name:other;" scale="0.020 0.025 0.035" position="-0.791 0.626 -11.567" rotation="0.000 90.000 0.000"></a-entity> -->
+    <!-- asset -->
+
+     <!--  <a-entity  position="-3.158 0.074  6.795"><a-camera></a-camera></a-entity> -->
+       <!--  <a-entity ctm="src: #in-ctm;  "  scale="1 1 1" position="-8.595 -0.040  8.067" ></a-entity>
+        <a-entity ctm="src: #in-ctm;  "  scale="1 1 1" position="-8.595 -0.040  8.067" ></a-entity>
+        <a-entity ctm="src: #out-ctm;  "  scale="1 1 1" position="-8.595 -0.040  8.067" ></a-entity> -->
+       <!--  <a-entity ctm="src: #floormain-ctm;  name:fool;"  scale="1 1 1" position="-8.595 -0.040  8.067" ></a-entity> -->
+        <!-- <a-entity ctm="src: #other-ctm;  name:other;"  scale="1 1 1" position="-8.595 -0.040  8.067" ></a-entity> -->
+        <!-- <a-entity ctm="src: #homepro-ctm;  "  scale="1 1 1" position="-8.595 -0.040  8.067" ></a-entity> -->
+        <a-entity ctm="src: #homepro-ctm;  name:other;"  scale="1 1 1" position="-8.595 -0.040  -2.108" shadow></a-entity>
+          <!-- frool -->
+         <a-entity ctm="src: #view-ctm;  name:room;"  scale="1 1 1" position="-4.254 -0.031 -8.157" ></a-entity>
+         <a-entity ctm="src: #viewroom-ctm;  name:room;"  scale="1 1 1" position="-1.330 -0.031 -7.522" ></a-entity>
+         <a-entity ctm="src: #floorkitchen-ctm;  name:room;"  scale="1 1 1" position="-3.279 -0.031  -12.715" ></a-entity>
+         <a-entity ctm="src: #floorkitchen2-ctm;  name:room;"  scale="1 1 1" position="-3.277 -0.031  -12.703" ></a-entity>
+         <a-entity ctm="src: #floorkitchen3-ctm;  name:room;"  scale="1 1 1" position="-6.249 -0.031  -12.697" ></a-entity>
+         <a-entity ctm="src: #bedroom-ctm;  name:room;"  scale="1 1 1" position="-1.055 -0.031  -11.563" ></a-entity>
+         <a-entity ctm="src: #floortoilet-ctm;  name:toilet;"  scale="1 1 1" position="-8.590 -0.032  -12.469" ></a-entity>
+          <!-- frool -->
+          
+          <a-entity ctm="src: #ceiling-ctm;  name:sink2;" position="-8.613 -0.035 -2.100"></a-entity>
+
+          <!-- stair -->
+          <a-entity ctm="src: #stair-ctm;  name:Cladding_Siding_White;" position="-5.676 -0.092 -7.348" rotation="2.406 0 0" scale="1 1 0.850" ></a-entity>
+          <a-entity ctm="src: #stair2-ctm;  name:Polished_Concrete_Old;" position="-5.688 -0.046 -8.916"></a-entity>
+          <a-entity ctm="src: #stair3-ctm;  name:Polished_Concrete_Old;" position="-2.885 -0.031 -5.591"></a-entity>
+          <a-entity ctm="src: #stair4-ctm;  name:Polished_Concrete_Old;" position="-4.369 -0.043 -5.183"></a-entity>
+          <!-- stair -->
+
+          <!-- viewroom -->
+          <!-- detail -->
+          <a-entity ctm="src: #detailinviewroom-ctm;  name:bedroom;"  scale="1 1 1" position="-8.597 -0.030  -2.111" ></a-entity>
+          <a-entity ctm="src: #detailinviewroom2-ctm;  name:bedroom;"  scale="1 1 1" position="-8.597 -0.035  -2.111" ></a-entity>
+          <a-entity ctm="src: #detailinviewroom3-ctm;  name:bedroom;"  scale="1 1 1" position="-8.597 -0.035  -2.111" ></a-entity>
+          <a-entity ctm="src: #detailinviewroom4-ctm;  name:bedroom;"  scale="1 1 1" position="-8.597 -0.035  -2.111" ></a-entity>
+          <a-entity ctm="src: #detailinviewroom5-ctm;  name:bedroom;"  scale="1 1 1" position="-8.598 -0.045  -2.112" ></a-entity>
+          <a-entity ctm="src: #detailinviewroom6-ctm;  name:bedroom;"  scale="1 1 1" position="-8.598 -0.045  -2.112" ></a-entity>
+          <a-entity ctm="src: #detailinviewroom7-ctm;  name:bedroom;"  scale="1 1 1" position="-8.588 -0.040  -2.112" ></a-entity>
+          <a-entity ctm="src: #detailinviewroom8-ctm;  name:bedroom;"  scale="1 1 1" position="-8.598 -0.045  -2.112" ></a-entity>
+          <!-- detail -->
+          <a-entity ctm="src: #inviewroom3-ctm;  name:bedroom;"  scale="1 1 1" position="-8.588 -0.042  -2.106" ></a-entity>
+          <a-entity ctm="src: #inviewroom4-ctm;  name:bedroom;"  scale="1 1 1" position="-8.580 -0.013  -2.105" ></a-entity>
+          <a-entity ctm="src: #inviewroom5-ctm;  name:bedroom;"  scale="1 1 1" position="-8.588 -0.041  -2.105" ></a-entity>
+          <a-entity ctm="src: #inviewroom6-ctm;  name:bedroom;"  scale="1 1 1" position="-8.580 -0.013  -2.105" ></a-entity>
+          <!-- detail -->
+          <a-entity ctm="src: #detailinviewroom9-ctm;  name:bedroom;"  scale="1 1 1" position="-8.588 -0.043  -2.101" ></a-entity>
+          <a-entity ctm="src: #detailinviewroom10-ctm;  name:bedroom;"  scale="1 1 1" position="-8.588 -0.043  -2.101" ></a-entity>
+          <a-entity ctm="src: #detailinviewroom11-ctm;  name:bedroom;"  scale="1 1 1" position="-8.588 -0.038  -2.101" ></a-entity>
+          <!-- detail -->
+          <a-entity ctm="src: #inviewroom8-ctm;  name:bedroom;"  scale="1 1 1" position="-8.590 -0.010  -2.101" ></a-entity>
+          <a-entity ctm="src: #inviewroom9-ctm;  name:bedroom;"  scale="1 1 1" position="-8.590 -0.013  -2.101" ></a-entity>
+          <a-entity ctm="src: #inviewroom10-ctm;  name:bedroom;"  scale="1 1 1" position="-8.590 -0.010  -2.101" ></a-entity>
+          <a-entity ctm="src: #inviewroom11-ctm;  name:bedroom;"  scale="1 1 1" position="-8.597 -0.035  -2.111" ></a-entity>
+          <a-entity ctm="src: #inviewroom12-ctm;  name:bedroom;"  scale="1 1 1" position="-8.597 -0.040  -2.101" ></a-entity>
+          <a-entity ctm="src: #inviewroom13-ctm;  name:bedroom;"  scale="1 1 1" position="-8.600 -0.030  -2.104" ></a-entity>
+          <a-entity ctm="src: #inviewroom14-ctm;  name:bedroom;"  scale="1 1 1" position="-8.594 -0.052  -2.108" ></a-entity>
+          <!-- viewroom -->
+
+          <!-- bedroom -->
+          <!-- detail -->
+          <a-entity ctm="src: #inbedroom8-ctm;  name:bedroom;"  scale="1 1 1" position="-8.604 -0.035  -2.094" ></a-entity>
+          <a-entity ctm="src: #inbedroom9-ctm;  name:bedroom;"  scale="1 1 1" position="-8.604 -0.035  -2.099" ></a-entity>
+          <a-entity ctm="src: #inbedroom10-ctm;  name:bedroom;"  scale="1 1 1" position="-8.604 -0.035  -2.113" ></a-entity>
+          <a-entity ctm="src: #inbedroom11-ctm;  name:bedroom;"  scale="1 1 1" position="-8.604 -0.015  -2.100" ></a-entity>
+          <!-- detail -->
+          <a-entity ctm="src: #inbedroom2-ctm;  name:bedroom;"  scale="1 1 1" position="-8.604 -0.035  -2.081" ></a-entity>
+          <a-entity ctm="src: #inbedroom3-ctm;  name:bedroom;"  scale="1 1 1" position="-8.589 -0.036  -2.078" ></a-entity>
+          <a-entity ctm="src: #inbedroom4-ctm;  name:bedroom;"  scale="1 1 1" position="-8.589 -0.035  -2.108" ></a-entity>
+          <a-entity ctm="src: #inbedroom5-ctm;  name:bedroom;"  scale="1 1 1" position="-8.589 -0.039  -2.099" ></a-entity>
+          <a-entity ctm="src: #inbedroom6-ctm;  name:bedroom;"  scale="1 1 1" position="-8.589 -0.035  -2.105" ></a-entity>
+          <a-entity ctm="src: #inbedroom7-ctm;  name:bedroom;"  scale="1 1 1" position="-8.589 -0.035  -2.106" ></a-entity>
+
+          <!-- bedroom -->
+
+          <!-- toilet --> 
+        <a-entity ctm="src: #tolet-ctm;  name:toletin;"  scale="1 1 1" position="-5.910 -0.046  -12.762" ></a-entity>
+         <a-entity ctm="src: #tolet2-ctm;  name:toletin;"  scale="1 1 1" position="-5.679 -0.027  -12.427" ></a-entity>
+          <a-entity ctm="src: #tolet3-ctm;  name:toletin;"  scale="1 1 1" position="-5.090 -0.033  -12.165" ></a-entity>
+           <a-entity ctm="src: #tolet6-ctm;  name:toletin;"  scale="1 1 1" position="-4.500 -0.074  -11.695" ></a-entity>
+            <a-entity ctm="src: #tolet5-ctm;  name:toletin;"  scale="1 1 1" position="-4.349 -0.030  -12.800" ></a-entity>            
+          <!-- toilet -->
+        
+          <!-- kitchen -->
+          <a-entity ctm="src: #inkitchenroom-ctm;  name:kitchen;"  scale="1 1 1" position="-3.352 -0.047  -12.984" ></a-entity>
+          <!-- detail -->
+           <a-entity ctm="src: #detailinkitchenroom-ctm;  name:other;"  scale="1 1 1" position="-8.596 -0.045  -2.091" ></a-entity>
+           <a-entity ctm="src: #detailinkitchenroom2-ctm;  name:kitchen;"  scale="1 1 1" position="-5.132 -0.038  -12.937" ></a-entity>
+           <a-entity ctm="src: #detailinkitchenroom3-ctm;  name:kitchen;"  scale="1 1 1" position="-2.172 -0.040  -12.907" ></a-entity>
+           <a-entity ctm="src: #detailinkitchenroom4-ctm;  name:other;"  scale="1 1 1" position="-8.594 -0.043  -2.097" ></a-entity>
+           <!-- detail -->
+          <a-entity ctm="src: #inkitchenroom3-ctm;  name:other;"  scale="1 1 1" position="-5.369 -0.036 -13.698" ></a-entity>
+          <a-entity ctm="src: #inkitchenroom4-ctm;  name:other;"  scale="1 1 1" position="-3.895 -0.034 -16.449" ></a-entity>
+          <a-entity ctm="src: #inkitchenroom5-ctm;  name:other;"  scale="1 1 1" position="-1.867 -0.035 -15.822" ></a-entity>
+          <a-entity ctm="src: #inkitchenroom6-ctm;  name:other;"  scale="1 1 1" position="-2.760 -0.035 -15.400" ></a-entity>
+          <a-entity ctm="src: #inkitchenroom7-ctm;  name:other;"  scale="1 1 1" position="-1.277 -0.035 -16.777" ></a-entity>
+          <a-entity ctm="src: #inkitchenroom8-ctm;  name:other;"  scale="1 1 1" position="-4.279 -0.037 -14.465" ></a-entity>
+          <a-entity ctm="src: #inkitchenroom9-ctm;  name:other;"  scale="1 1 1" position="-1.369 -0.035 -16.000" ></a-entity>
+          <!-- kitchen -->
+          
+          <!-- outhome -->
+          <a-entity ctm="src: #out-ctm;  name:other;"  scale="1 1 1" position="-8.611 -0.035 -2.103" ></a-entity>
+          <a-entity ctm="src: #out2-ctm;  name:other;"  scale="1 1 1" position="-8.611 -0.035 -2.103" ></a-entity>
+          <a-entity ctm="src: #out3-ctm;  name:other;"  scale="1 1 1" position="-8.611 -0.035 -2.103" ></a-entity>
+          <a-entity ctm="src: #out4-ctm;  name:other;"  scale="1 1 1" position="-8.611 -0.035 -2.103" ></a-entity>
+          <a-entity ctm="src: #out5-ctm;  name:other;"  scale="1 1 1" position="-8.611 -0.035 -2.103" ></a-entity>
+          <a-entity ctm="src: #out6-ctm;  name:other;"  scale="1 1 1" position="-8.611 -0.035 -2.103" ></a-entity>
+          <a-entity ctm="src: #out7-ctm;  name:other;"  scale="1 1 1" position="-8.611 -0.035 -2.103" ></a-entity>
+          <a-entity ctm="src: #out8-ctm;  name:other;"  scale="1 1 1" position="-8.611 -0.035 -2.103" ></a-entity>
+          <a-entity ctm="src: #out9-ctm;  name:other;"  scale="1 1 1" position="-8.611 -0.035 -2.103" ></a-entity>
+          <a-entity ctm="src: #out10-ctm;  name:other;"  scale="1 1 1" position="-8.611 -0.035 -2.112" ></a-entity>
+          <a-entity ctm="src: #out11-ctm;  name:other;"  scale="1 1 1" position="-8.611 -0.035 -2.103" ></a-entity>
+          <a-entity ctm="src: #out12-ctm;  name:other;"  scale="1 1 1" position="-8.611 -0.035 -2.112" ></a-entity>
+          <a-entity ctm="src: #out13-ctm;  name:other;"  scale="1 1 1" position="-8.611 -0.035 -2.112" ></a-entity>
+          <a-entity ctm="src: #out14-ctm;  name:other;"  scale="1 1 1" position="-8.611 -0.035 -2.112" ></a-entity>
+          <a-entity ctm="src: #out15-ctm;  name:other;"  scale="1 1 1" position="-8.611 -0.035 -2.112" ></a-entity>
+          <a-entity ctm="src: #out16-ctm;  name:other;"  scale="1 1 1" position="-8.611 -0.035 -2.112" ></a-entity>
+          <a-entity ctm="src: #out17-ctm;  name:other;"  scale="1 1 1" position="-8.585 -0.055 -2.103" ></a-entity>
+          <a-entity ctm="src: #out18-ctm;  name:other;"  scale="1 1 1" position="-8.585 -0.055 -2.103" ></a-entity>
+          <a-entity ctm="src: #out19-ctm;  name:other;"  scale="1 1 1" position="-8.585 -0.055 -2.103" ></a-entity>
+          <a-entity ctm="src: #out20-ctm;  name:other;"  scale="1 1 1" position="-8.585 -0.055 -2.103" ></a-entity>
+          <a-entity ctm="src: #out21-ctm;  name:other;"  scale="1 1 1" position="-8.585 -0.055 -2.103" ></a-entity>
+          <a-entity ctm="src: #out22-ctm;  name:other;"  scale="1 1 1" position="-8.585 -0.055 -2.103" ></a-entity>
+          <a-entity ctm="src: #out23-ctm;  name:other;"  scale="1 1 1" position="-8.585 -0.055 -2.103" ></a-entity>
+          <a-entity ctm="src: #out24-ctm;  name:other;"  scale="1 1 1" position="-8.585 -0.055 -2.103" ></a-entity>
+          <a-entity ctm="src: #out25-ctm;  name:other;"  scale="1 1 1" position="-8.611 -0.035 -2.103" ></a-entity>
+          <a-entity ctm="src: #out26-ctm;  name:other;"  scale="1 1 1" position="-8.611 -0.035 -2.103" ></a-entity>
+          <a-entity ctm="src: #out27-ctm;  name:other;"  scale="1 1 1" position="-8.611 -0.035 -2.103" ></a-entity>
+          <a-entity ctm="src: #out28-ctm;  name:other;"  scale="1 1 1" position="-8.611 -0.035 -2.103" ></a-entity>
+          <a-entity ctm="src: #out29-ctm;  name:other;"  scale="1 1 1" position="-8.611 -0.035 -2.103" ></a-entity>
+          <!-- outhome -->
+      <!-- <a-entity teleport-controls="button: trigger; collision-entities: #floor #hall_low_floor" hand-controls="left"></a-entity>
+      <a-entity teleport-controls="button: trigger; collision-entities: #floor #hall_low_floor" hand-controls="right"></a-entity> -->
+          <a-entity id="ocean" ocean="density: 20; width: 50; depth: 50; speed: 3"
+                material="color: #9CE3F9; opacity: 0.75; metalness: 0; roughness: 1"
+                rotation="-90 0 0" scale="0.004 0.005 0.020" position="-4.123 1.262 -13.068"></a-entity>
+
+                <a-entity id="ocean" ocean="density: 20; width: 50; depth: 50; speed: 3"
+                material="color: #9CE3F9; opacity: 0.75; metalness: 0; roughness: 1"
+                rotation="-90 0 0" scale="0.030 0.04 0.13" position="1.003 0.485 -2.283"></a-entity>
+          
+    </a-scene>
+
+    <script src="main.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-92113119-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+  </body>
+
+</html>

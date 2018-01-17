@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>VR Home On Web</title>
+
+
+    <meta property="og:title" content="Cecropia's The Hall VR in A-Frame" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://cecropia.github.io/thehallaframe/" />
+    <meta property="og:image" content="https://cecropia.github.io/thehallaframe/screenshots/thehall1.jpg" />
+    <meta property="og:description" content="WebVR demo that displays art " />
+
+    <meta name="twitter:card" content="summary_large_image">
+
+    <meta name="twitter:title" content="Cecropia's The Hall VR in A-Frame">
+    <meta name="twitter:description" content="WebVR demo that displays art ">
+    <meta name="twitter:image" content="https://cecropia.github.io/thehallaframe/screenshots/thehall1.jpg">
+
+
+
+
+    <link rel="icon" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+    <meta name="description" content="Cecropia's The Hall VR in A-Frame">
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="js/aframe.0.5.0.min.js"></script>
+    <script src="js/aframe-extras.min.js"></script>
+
+    <script src="js/lzma.js"></script>
+    <script src="js/ctm.js"></script>
+    <script src="js/CTMLoader.js"></script>
+
+    <script src="js/aframe-teleport-controls.min.js"></script>
+    <script src="js/spheres_anim.js"></script>
+    <script src="js/anim_1.js"></script>
+    <script src="js/anim_2.js"></script>
+    <script src="js/mocap.js"></script>
+    <script src="js/envMapMaterial.js"></script>
+    <script src="js/ctm_component.js"></script>
+    <script src="js/mobile_component.js"></script>
+
+  </head>
+
+  <body>
+
+    <div id="container" class="container">
+      <div class="info">
+        <div class="company"><a style="color:#ff66ff" target="_blank">VR Home On Web</a></div>
+        <div style="color:#ff66ff" >บ้านคนชรา</div>
+        
+        <a class="button" id="start_experience" href="#" >ดูแบบบ้าน</a>
+        <div class="instructions " style="color:#ff66ff">
+          <div><strong>VR</strong>: Hand controllers and teleport with trigger.</div>
+          <div><strong>Desktop</strong>: Keyboard (WASD/arrows) and mouse.</div>
+          <div><strong>Mobile</strong>: Gaze cursor and teleportation.</div>
+        </div>
+      </div>
+    </div>
+
+    <!--<a-scene stats>-->
+
+    <a-scene>
+
+      <a-entity mobile></a-entity>
+
+     
+      
+
+      <!-- - Custom components with animations -->
+    <a-plane position="0 0 -4" rotation="-90 0 0" scale="20 23 4" color="#7BC8A4"></a-plane>
+      <a-assets>
+        <a-mixin id="checkpoint"></a-mixin>
+        <a-mixin id="checkpoint-hovered" color="#6CEEB5"></a-mixin>
+
+
+        <img id="sky_sphere-texture" src="textures/sky_sphere.jpg">
+    
+
+    
+    
+    
+    <!-- <a-asset-item id="farmhouse-obj" src="models/farmhouse.obj" "></a-asset-item> -->
+    <a-asset-item id="in-ctm" src="models/in.ctm"></a-asset-item>
+
+    <a-asset-item id="out-ctm" src="models/out.ctm"></a-asset-item>
+
+    
+    
+
+
+    
+    
+    
+        <!-- mocaps -->
+        <a-asset-item id="am_threejs_CEC_BODY_1_HEAD-mocap" src="js/mocap/am_threejs_CEC_BODY_1_HEAD.js"></a-asset-item>
+        <a-asset-item id="am_threejs_CEC_BODY_1_LEFT-mocap" src="js/mocap/am_threejs_CEC_BODY_1_LEFT.js"></a-asset-item>
+        <a-asset-item id="am_threejs_CEC_BODY_1_RIGHT-mocap" src="js/mocap/am_threejs_CEC_BODY_1_RIGHT.js"></a-asset-item>
+
+        <a-asset-item id="am_threejs_CEC_BODY_2_HEAD-mocap" src="js/mocap/am_threejs_CEC_BODY_2_HEAD.js"></a-asset-item>
+        <a-asset-item id="am_threejs_CEC_BODY_2_LEFT-mocap" src="js/mocap/am_threejs_CEC_BODY_2_LEFT.js"></a-asset-item>
+        <a-asset-item id="am_threejs_CEC_BODY_2_RIGHT-mocap" src="js/mocap/am_threejs_CEC_BODY_2_RIGHT.js"></a-asset-item>
+
+        <a-asset-item id="am_threejs_CEC_BODY_3_HEAD-mocap" src="js/mocap/am_threejs_CEC_BODY_3_HEAD.js"></a-asset-item>
+        <a-asset-item id="am_threejs_CEC_BODY_3_LEFT-mocap" src="js/mocap/am_threejs_CEC_BODY_3_LEFT.js"></a-asset-item>
+        <a-asset-item id="am_threejs_CEC_BODY_3_RIGHT-mocap" src="js/mocap/am_threejs_CEC_BODY_3_RIGHT.js"></a-asset-item>
+
+        <a-asset-item id="am_threejs_CEC_BODY_4_HEAD-mocap" src="js/mocap/am_threejs_CEC_BODY_4_HEAD.js"></a-asset-item>
+        <a-asset-item id="am_threejs_CEC_BODY_4_LEFT-mocap" src="js/mocap/am_threejs_CEC_BODY_4_LEFT.js"></a-asset-item>
+        <a-asset-item id="am_threejs_CEC_BODY_4_RIGHT-mocap" src="js/mocap/am_threejs_CEC_BODY_4_RIGHT.js"></a-asset-item>
+        <!-- - mocaps -->
+
+      </a-assets>
+
+      <a-sky color="#EEEEFF" material="src: #sky_sphere-texture"></a-sky>
+    
+     <!--  <a-entity obj-model="obj: #farmhouse-obj;" material="src: #farmhouse-texture" scale="1 1 1" position="-8.595 -0.040  8.067"></a-entity> -->
+      
+        <a-entity ctm="src: #in-ctm;  name:9548-bump;"  scale="1 1 1" position="-8.595 -0.040  8.067" ></a-entity>
+
+        <a-entity ctm="src: #out-ctm;  name:9548-bump;"  scale="1 1 1" position="-8.595 -0.040  8.067" ></a-entity>
+   <!--  
+    <a-entity ctm="src: #homepro-ctm; name:home;" scale="1 1 1" position="-8.595 -0.040  8.067"></a-entity>
+ -->
+    
+    
+ 
+
+    
+
+      <a-entity teleport-controls="button: trigger; collision-entities: #floor #hall_low_floor" hand-controls="left"></a-entity>
+      <a-entity teleport-controls="button: trigger; collision-entities: #floor #hall_low_floor" hand-controls="right"></a-entity>
+
+    </a-scene>
+
+    <script src="main.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-92113119-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+  </body>
+
+</html>
